@@ -1,0 +1,419 @@
+/* APPLICATION STYLES */
+
+/* GLOBAL CSS */
+
+.sun-icon {
+  transition: transform 100ms ease;
+  cursor: pointer;
+}
+
+.sun-icon:hover {
+  transform: scale(1.2);
+}
+
+.btn {
+  display: block;
+  text-align: center;
+  color: var(--text-color);
+  font-size: var(--heading-three-font-size);
+  font-weight: calc(var(--font-weight) * 4);
+  font-family: var(--font-family);
+  border: 1px solid transparent;
+  border-radius: 10px;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.1s ease;
+}
+
+.btn:hover {
+  background-color: var(--quaternary-color);
+  transform: scale(1.1);
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4em;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  background-color: var(--dim-blue-color);
+  border-radius: 20px;
+  box-shadow: 6px 5px 15px rgba(0, 0, 0, 0.5);
+  padding: 2.5em;
+  font-size: 1em;
+  gap: 1em;
+}
+
+.bottom-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+  flex-direction: row;
+  padding: 2em;
+}
+
+/* HEADER CSS */
+
+.navigation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10vw;
+}
+
+.navbar-left {
+  color: var(--text-color);
+}
+
+.navbar-left h1 {
+  font-size: var(--heading-two-font-size);
+  font-weight: calc(var(--font-weight) * 4);
+  background: linear-gradient(
+    0deg,
+    var(--text-color) 40%,
+    var(--secondary-color)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  text-align: center;
+}
+
+.navbar-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+}
+
+.navbar-center .link {
+  text-decoration: none;
+  padding: 1em;
+  color: var(--text-color);
+  transition: color 500ms ease;
+}
+
+.navbar-center .link:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: var(--secondary-color);
+  border-radius: 50px;
+  box-shadow: 0 0 120px rgba(255, 255, 255, 0.5);
+}
+
+/* HOME CSS */
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero {
+  color: var(--text-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 2em;
+  height: 75vh;
+}
+
+.hero h1 {
+  font-size: calc(var(--heading-one-font-size) * 2.2);
+  font-weight: calc(var(--font-weight) * 4);
+  background: var(--text-clip);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  text-align: center;
+}
+
+.hero p {
+  font-size: var(--heading-four-font-size);
+  text-wrap: wrap;
+  text-align: center;
+  margin-top: -2em;
+}
+
+.hero .buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+  flex-direction: row;
+}
+
+.btn1,
+.btn3 {
+  background-color: var(--primary-color);
+  padding: 15px;
+  border-radius: 50px;
+  width: 8em;
+}
+
+.btn1:hover {
+  background-color: var(--teritary-color);
+  color: #000;
+}
+
+.btn2 {
+  background-color: var(--quaternary-color);
+  padding: 15px;
+  border-radius: 50px;
+  width: 8em;
+}
+
+.btn2:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+.more-information {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 8em;
+  color: var(--text-color);
+  width: 50vw;
+  height: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 5em;
+  border-radius: 20px;
+  box-shadow: 6px 5px 15px rgba(0, 0, 0, 0.5);
+  border: 1px solid transparent;
+  text-align: center;
+  margin-bottom: 2em;
+}
+
+.more-information ol {
+  text-align: left;
+}
+
+.btn3 {
+  margin-top: 1em;
+}
+
+/* BASIC MATH CSS */
+
+.main1 {
+  gap: 1.5em;
+}
+
+.container1 {
+  width: 35vw;
+}
+
+.calculator-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30vw;
+  padding: 10px;
+}
+
+.back {
+  background-color: var(--primary-color);
+  width: 3em;
+  padding: 5px;
+}
+
+.back:hover {
+  background-color: var(--teritary-color);
+  color: #000;
+}
+
+.number {
+  background-color: var(--secondary-color);
+  width: 4em;
+  height: 2em;
+}
+
+.operand {
+  background-color: var(--primary-color);
+  width: 4em;
+  height: 2em;
+}
+
+.delete,
+.clear,
+.equal,
+.dot {
+  background-color: var(--teritary-color);
+  color: #000;
+  width: 4em;
+  height: 2em;
+}
+.delete:hover,
+.clear:hover,
+.equal:hover,
+.dot:hover {
+  color: #fff;
+}
+
+.calculator {
+  display: grid;
+  grid-template: repeat(5, 4em) / repeat(4, 8em);
+  place-content: center;
+  place-items: center;
+  gap: 0.5em;
+  padding: 1em;
+}
+
+.screen {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  padding: 1em;
+  width: 9em;
+  height: 0.1em;
+  background-color: var(--quaternary-color);
+  border: 1px solid transparent;
+  color: var(--primary-color);
+  border-radius: 20px;
+  font-family: var(--font-family);
+  font-weight: calc(var(--font-weight) * 4);
+  font-size: var(--heading-one-font-size);
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 768px), (max-width: 1024px) {
+  .theme-toggle {
+    gap: 10vw;
+  }
+
+  .container1 {
+    width: 80vw;
+    height: auto;
+    padding: 1em;
+    gap: 0.5em;
+  }
+
+  .screen {
+    width: 4em;
+  }
+
+  .calculator {
+    grid-template: repeat(5, 3em) / repeat(4, 5em);
+    gap: 0;
+    padding: 0;
+  }
+
+  .number,
+  .operand,
+  .delete,
+  .clear,
+  .equal,
+  .dot {
+    width: 4em;
+    height: 2em;
+    font-size: var(--heading-six-font-size);
+  }
+
+  /* TO-DO FIX MOBILE MENU RESPONSIVENESS */
+}
+
+/* PMT CSS */
+
+.main2 {
+  gap: 2em;
+}
+
+.container2 {
+  width: 50vw;
+  height: auto;
+  padding: 1em;
+  margin-bottom: 2em;
+  gap: 0.2em;
+}
+
+.container2 h1 {
+  font-size: var(--heading-two-font-size);
+  color: var(--text-color);
+  text-align: center;
+}
+
+.container2 p {
+  font-size: var(--heading-five-font-size);
+  color: var(--text-color);
+  text-align: center;
+}
+
+.pmt-inputs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1em;
+  padding: 2em 0 1em 0;
+}
+
+.pmt-inputs input[type="number"] {
+  padding: 20px;
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 50px;
+  width: 20vw;
+  font-family: var(--font-family);
+  color: var(--text-color);
+  font-size: var(--heading-six-font-size);
+  text-align: center;
+  -moz-appearance: textfield;
+}
+
+/* GET RID OF UP/DOWN BUTTONS FOR NUMBER INPUT FIELD */
+.pmt-inputs input[type="number"]::-webkit-outer-spin-button,
+.pmt-inputs input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.pmt-inputs input[type="number"]::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.pmt-inputs input[type="number"]:focus {
+  outline: none;
+  outline: 3px solid var(--teritary-color);
+}
+
+.container2 h3 {
+  font-size: var(--heading-two-font-size);
+  color: var(--text-color);
+  text-align: center;
+}
+
+.calculate,
+.copy-button,
+.reset-button {
+  background-color: var(--primary-color);
+  padding: 15px;
+  border-radius: 50px;
+  width: 6em;
+}
+
+.calculate:hover,
+.copy-button:hover,
+.reset-button:hover {
+  background-color: var(--teritary-color);
+  color: #000;
+}
+
+/* FV CSS */
+
+/* PV CSS */
+
+/* NPER CSS */

@@ -1,0 +1,68 @@
+@import url("https://fonts.googleapis.com/css2?family=Stack+Sans+Text:wght@200..700&display=swap");
+
+/* FOUNDATION STYLES */
+:root {
+  --primary-color: #1f3dff;
+  --secondary-color: #000a4d;
+  --teritary-color: #ffec41;
+  --quaternary-color: #000000;
+  --dim-blue-color: #0b0d1c;
+  --text-color: #fff;
+  --text-clip: linear-gradient(
+    180deg,
+    var(--text-color) 20%,
+    var(--secondary-color)
+  );
+
+  --font-family: "Stack Sans Text", sans-serif;
+  --font-weight: 200;
+  --heading-one-font-size: 48px;
+  --heading-two-font-size: 36px;
+  --heading-three-font-size: 32px;
+  --heading-four-font-size: 24px;
+  --heading-five-font-size: 20px;
+  --heading-six-font-size: 18px;
+}
+
+.light-mode {
+  --secondary-color: #eeeeee;
+  --quaternary-color: #ffffff;
+  --text-color: #000000;
+  --text-clip: linear-gradient(
+    180deg,
+    var(--primary-color),
+    var(--quaternary-color)
+  );
+
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+  width: 100vw;
+  max-width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  scrollbar-width: none;
+}
+
+body {
+  font-family: var(--font-family);
+  background: linear-gradient(
+    0deg,
+    var(--primary-color) 10%,
+    var(--quaternary-color) 70%
+  );
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
