@@ -2,17 +2,21 @@
 
 /* FOUNDATION STYLES */
 :root {
-  --primary-color: #1f3dff;
-  --secondary-color: #000a4d;
+  --primary-color: #0084ff;
+  --secondary-color: #002140;
   --teritary-color: #ffec41;
-  --quaternary-color: #000000;
+  --quaternary-color: #fff;
   --dim-blue-color: #0b0d1c;
-  --text-color: #fff;
+  --light-blue-color: #80c2ff;
+  --text-color: #000;
   --text-clip: linear-gradient(
     180deg,
-    var(--text-color) 20%,
-    var(--secondary-color)
+    var(--primary-color),
+    var(--dim-blue-color)
   );
+  --rgba-quaternary-color: rgba(255, 255, 255, 0.5);
+  --rgba-quaternary-color-flip: rgba(0, 0, 0, 0.5);
+  --rgba-header-color: rgba(0, 0, 0, 0.9);
 
   --font-family: "Stack Sans Text", sans-serif;
   --font-weight: 200;
@@ -24,15 +28,20 @@
   --heading-six-font-size: 18px;
 }
 
-.light-mode {
-  --secondary-color: #eeeeee;
-  --quaternary-color: #ffffff;
-  --text-color: #000000;
-  --text-clip: linear-gradient(
-    180deg,
-    var(--primary-color),
-    var(--quaternary-color)
-  );
+:root[data-theme="dark"] {
+  --secondary-color: #80c2ff;
+  --quaternary-color: #000;
+  --text-color: #fff;
+  --text-clip: linear-gradient(180deg, var(--primary-color), var(--text-color));
+  --rgba-quaternary-color: rgba(0, 0, 0, 0.5);
+  --rgba-quaternary-color-flip: rgba(255, 255, 255, 0.5);
+  --rgba-header-color: rgba(255, 255, 255, 0.9);
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  scrollbar-width: none;
 
   margin: 0 auto;
   padding: 0;
@@ -40,23 +49,14 @@
   width: 100vw;
   max-width: 100%;
   height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-html {
-  scroll-behavior: smooth;
-  overflow-x: hidden;
-  scrollbar-width: none;
 }
 
 body {
   font-family: var(--font-family);
   background: linear-gradient(
     0deg,
-    var(--primary-color) 10%,
-    var(--quaternary-color) 70%
+    var(--primary-color),
+    var(--quaternary-color) 80%
   );
   background-repeat: no-repeat;
   background-size: cover;
@@ -65,4 +65,5 @@ body {
   user-select: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }

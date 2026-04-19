@@ -1,17 +1,7 @@
 import Header from "./../components/Header.tsx";
 import { useState } from "react";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { library, type IconProp } from "@fortawesome/fontawesome-svg-core";
-/* import all the icons in Free Solid, Free Regular, and Brands styles */
-// import { fas } from "@fortawesome/free-solid-svg-icons";
-// import { far } from "@fortawesome/free-regular-svg-icons";
-// import { fab } from "@fortawesome/free-brands-svg-icons";
-
-// library.add(fas, far, fab);
 
 export default function BasicMath() {
-  // // @ts-ignore
-  // const myIcon: IconProp = "fa-solid fa-sun";
   const [input, setInput] = useState("");
 
   // Input numbers to screen
@@ -60,7 +50,7 @@ export default function BasicMath() {
     <div className="main-container main1">
       <Header />
       <div
-        className="container container1"
+        className="container-body container-body1"
         data-aos="flip-up"
         data-aos-duration="1000"
       >

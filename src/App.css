@@ -2,13 +2,19 @@
 
 /* GLOBAL CSS */
 
-.sun-icon {
+.theme-icon {
+  width: 48px;
+  height: 48px;
   transition: transform 100ms ease;
   cursor: pointer;
 }
 
-.sun-icon:hover {
+.theme-icon:hover {
   transform: scale(1.2);
+}
+
+.moon {
+  color: #fff;
 }
 
 .btn {
@@ -27,7 +33,6 @@
 }
 
 .btn:hover {
-  background-color: var(--quaternary-color);
   transform: scale(1.1);
 }
 
@@ -39,7 +44,7 @@
   gap: 4em;
 }
 
-.container {
+.container-body {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -47,7 +52,7 @@
 
   background-color: var(--dim-blue-color);
   border-radius: 20px;
-  box-shadow: 6px 5px 15px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 240px var(--rgba-quaternary-color);
   padding: 2.5em;
   font-size: 1em;
   gap: 1em;
@@ -80,7 +85,7 @@
   font-weight: calc(var(--font-weight) * 4);
   background: linear-gradient(
     0deg,
-    var(--text-color) 40%,
+    var(--primary-color),
     var(--secondary-color)
   );
   background-clip: text;
@@ -105,10 +110,10 @@
 }
 
 .navbar-center .link:hover {
-  background-color: rgba(255, 255, 255, 0.9);
-  color: var(--secondary-color);
+  background-color: var(--rgba-header-color);
+  color: var(--quaternary-color);
   border-radius: 50px;
-  box-shadow: 0 0 120px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 120px var(--rgba-quaternary-color-flip);
 }
 
 /* HOME CSS */
@@ -143,6 +148,7 @@
 
 .hero p {
   font-size: var(--heading-four-font-size);
+  color: var(--text-color);
   text-wrap: wrap;
   text-align: center;
   margin-top: -2em;
@@ -158,13 +164,15 @@
 
 .btn1,
 .btn3 {
-  background-color: var(--primary-color);
+  background-color: var(--secondary-color);
+  color: var(--quaternary-color);
   padding: 15px;
   border-radius: 50px;
   width: 8em;
 }
 
-.btn1:hover {
+.btn1:hover,
+.btn3:hover {
   background-color: var(--teritary-color);
   color: #000;
 }
@@ -177,8 +185,8 @@
 }
 
 .btn2:hover {
-  background-color: #fff;
-  color: #000;
+  background-color: var(--text-color);
+  color: var(--quaternary-color);
 }
 
 .more-information {
@@ -186,21 +194,39 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  gap: 4em;
   margin-top: 8em;
   color: var(--text-color);
   width: 50vw;
   height: auto;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: var(--rgba-quaternary-color);
   padding: 5em;
   border-radius: 20px;
-  box-shadow: 6px 5px 15px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 240px rgba(0, 0, 0, 0.2);
   border: 1px solid transparent;
   text-align: center;
   margin-bottom: 2em;
 }
 
+.more-information p {
+  font-size: var(--heading-five-font-size);
+}
+
 .more-information ol {
   text-align: left;
+}
+
+.more-information h1 {
+  font-size: var(--heading-two-font-size);
+  font-weight: calc(var(--font-weight) * 4);
+}
+
+.more-information {
+  gap: 0;
+}
+
+.more-info2 {
+  margin-bottom: 3em;
 }
 
 .btn3 {
@@ -213,39 +239,28 @@
   gap: 1.5em;
 }
 
-.container1 {
+.container-body1 {
   width: 35vw;
 }
 
-.calculator-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 30vw;
-  padding: 10px;
-}
-
-.back {
-  background-color: var(--primary-color);
-  width: 3em;
-  padding: 5px;
-}
-
-.back:hover {
-  background-color: var(--teritary-color);
-  color: #000;
-}
-
 .number {
-  background-color: var(--secondary-color);
+  background-color: var(--primary-color);
+  color: var(--quaternary-color);
   width: 4em;
   height: 2em;
 }
 
 .operand {
-  background-color: var(--primary-color);
+  background-color: var(--light-blue-color);
+  color: #000;
   width: 4em;
   height: 2em;
+}
+
+.number:hover,
+.operand:hover {
+  background-color: var(--quaternary-color);
+  color: var(--text-color);
 }
 
 .delete,
@@ -261,7 +276,21 @@
 .clear:hover,
 .equal:hover,
 .dot:hover {
-  color: #fff;
+  background-color: var(--quaternary-color);
+  color: var(--text-color);
+}
+
+.copy-button {
+  background-color: var(--light-blue-color);
+  color: #000;
+  padding: 15px;
+  border-radius: 50px;
+  width: 6em;
+}
+
+.copy-button:hover {
+  background-color: var(--quaternary-color);
+  color: var(--text-color);
 }
 
 .calculator {
@@ -291,11 +320,7 @@
 }
 
 @media (max-width: 768px), (max-width: 1024px) {
-  .theme-toggle {
-    gap: 10vw;
-  }
-
-  .container1 {
+  .container-body1 {
     width: 80vw;
     height: auto;
     padding: 1em;
@@ -332,7 +357,7 @@
   gap: 2em;
 }
 
-.container2 {
+.container-body2 {
   width: 50vw;
   height: auto;
   padding: 1em;
@@ -340,15 +365,15 @@
   gap: 0.2em;
 }
 
-.container2 h1 {
+.container-body2 h1 {
   font-size: var(--heading-two-font-size);
-  color: var(--text-color);
+  color: #fff;
   text-align: center;
 }
 
-.container2 p {
+.container-body2 p {
   font-size: var(--heading-five-font-size);
-  color: var(--text-color);
+  color: #fff;
   text-align: center;
 }
 
@@ -368,10 +393,9 @@
   border-radius: 50px;
   width: 20vw;
   font-family: var(--font-family);
-  color: var(--text-color);
+  color: #fff;
   font-size: var(--heading-six-font-size);
   text-align: center;
-  -moz-appearance: textfield;
 }
 
 /* GET RID OF UP/DOWN BUTTONS FOR NUMBER INPUT FIELD */
@@ -382,7 +406,7 @@
 }
 
 .pmt-inputs input[type="number"]::placeholder {
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--rgba-quaternary-color-flip);
 }
 
 .pmt-inputs input[type="number"]:focus {
@@ -390,23 +414,22 @@
   outline: 3px solid var(--teritary-color);
 }
 
-.container2 h3 {
+.container-body2 h3 {
   font-size: var(--heading-two-font-size);
-  color: var(--text-color);
+  color: #fff;
   text-align: center;
 }
 
 .calculate,
-.copy-button,
 .reset-button {
   background-color: var(--primary-color);
+  color: var(--quaternary-color);
   padding: 15px;
   border-radius: 50px;
   width: 6em;
 }
 
 .calculate:hover,
-.copy-button:hover,
 .reset-button:hover {
   background-color: var(--teritary-color);
   color: #000;
@@ -417,3 +440,71 @@
 /* PV CSS */
 
 /* NPER CSS */
+
+/* DIALOG STYLING */
+[data-success],
+[data-error] {
+  background-color: var(--teritary-color);
+  padding: 3em;
+  border: 2px solid var(--secondary-color);
+  border-radius: 10px;
+  box-shadow: 0 12px 50px rgba(0, 0, 0, 1);
+  text-align: center;
+
+  /* Closed state: scaled down and transparent */
+  opacity: 0;
+  transform: scale(0.8);
+
+  /* Transition setup including allow-discrete for display */
+  transition:
+    opacity 0.3s ease-out,
+    transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
+    overlay 0.3s allow-discrete,
+    display 0.3s allow-discrete;
+}
+
+[data-success]:open,
+[data-error]:open {
+  /* Open state: fully visible and normal size */
+  opacity: 1;
+  transform: scale(1);
+
+  /* Define the starting point for the entry animation */
+  @starting-style {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+
+[data-success]::backdrop,
+[data-error]::backdrop {
+  background-color: rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+}
+
+[data-success]:open::backdrop,
+[data-error]:open::backdrop {
+  opacity: 1;
+}
+
+[data-success] .dialog-content,
+[data-error] .dialog-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+}
+
+[data-success] .dialog-content h3,
+[data-error] .dialog-content h3 {
+  color: var(--text-color);
+  font-size: var(--heading-four-font-size);
+  height: 0;
+  margin-top: -5px;
+}
+
+.close-success-modal,
+.close-error-modal {
+  cursor: pointer;
+}

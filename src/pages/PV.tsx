@@ -30,7 +30,7 @@ export default function PV() {
     <div className="main-container main2">
       <Header />
       <div
-        className="container container2"
+        className="container-body container-body2"
         data-aos="flip-up"
         data-aos-duration="1000"
       >
