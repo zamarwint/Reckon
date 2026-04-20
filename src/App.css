@@ -64,15 +64,7 @@
   padding: 2.5em;
   font-size: 1em;
   gap: 1em;
-}
-
-.bottom-buttons {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 2em;
-  flex-direction: row;
-  padding: 2em;
+  margin-bottom: 5em;
 }
 
 /* HEADER CSS */
@@ -108,7 +100,8 @@
   gap: 2em;
 }
 
-.navbar-center .link {
+.navbar-center .link,
+.sidebar .link {
   text-decoration: none;
   padding: 1em;
   color: var(--text-color);
@@ -124,6 +117,69 @@
   box-shadow: 0 0 120px var(--rgba-quaternary-color-flip);
 }
 
+/* MOBILE MENU */
+
+.navbar-center .link {
+  @media (max-width: 1024px) {
+    display: none;
+  }
+}
+
+.sidebar-toggle {
+  display: none;
+
+  @media (max-width: 1024px) {
+    display: block;
+  }
+}
+
+.sidebar.visible {
+  right: 0;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  height: 100%;
+  width: 50%;
+  z-index: 999;
+  background-color: var(--rgba-quaternary-color);
+  backdrop-filter: blur(10px);
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  transition: 1s ease-out;
+
+  @media (max-width: 400px) {
+    width: 100%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .sidebar,
+  .sidebar.visible {
+    right: -100%;
+  }
+}
+
+.sidebar .close-sidebar {
+  padding: 10px;
+}
+
+.sidebar .link {
+  width: 100%;
+}
+
+.sidebar .link:hover,
+.sidebar .link.active {
+  background-color: var(--rgba-header-color);
+  color: var(--quaternary-color);
+  box-shadow: 0 0 120px var(--rgba-quaternary-color-flip);
+}
+
 /* HOME CSS */
 
 .main-content {
@@ -131,6 +187,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 768px) {
+    gap: 3em;
+  }
 }
 
 .hero {
@@ -141,6 +201,10 @@
   flex-direction: column;
   gap: 2em;
   height: 75vh;
+
+  @media (max-width: 768px) {
+    gap: 4em;
+  }
 }
 
 .hero h1 {
@@ -152,6 +216,11 @@
   -webkit-text-fill-color: transparent;
   color: transparent;
   text-align: center;
+
+  @media (max-width: 768px) {
+    font-size: var(--heading-one-font-size);
+    width: 75%;
+  }
 }
 
 .hero p {
@@ -160,6 +229,11 @@
   text-wrap: wrap;
   text-align: center;
   margin-top: -2em;
+
+  @media (max-width: 768px) {
+    font-size: var(--heading-five-font-size);
+    width: 50%;
+  }
 }
 
 .hero .buttons {
@@ -168,6 +242,10 @@
   align-items: center;
   gap: 2em;
   flex-direction: row;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 }
 
 .btn1,
@@ -214,6 +292,11 @@
   border: 1px solid transparent;
   text-align: center;
   margin-bottom: 2em;
+
+  @media (max-width: 768px) {
+    width: 90vw;
+    padding: 2em;
+  }
 }
 
 .more-information p {
@@ -248,8 +331,17 @@
 }
 
 .container-body1 {
-  width: 35vw;
   user-select: none;
+
+  @media (max-width: 768px) {
+    width: 90vw;
+  }
+}
+
+@media (max-width: 1024px) {
+  .container-body1 {
+    width: fit-content;
+  }
 }
 
 .number {
@@ -257,6 +349,10 @@
   color: var(--quaternary-color);
   width: 4em;
   height: 2em;
+
+  @media (max-width: 768px) {
+    width: 2em;
+  }
 }
 
 .operand {
@@ -264,6 +360,10 @@
   color: #000;
   width: 4em;
   height: 2em;
+
+  @media (max-width: 768px) {
+    width: 2em;
+  }
 }
 
 .number:hover,
@@ -280,7 +380,20 @@
   color: #000;
   width: 4em;
   height: 2em;
+
+  @media (max-width: 768px) {
+    width: 2em;
+  }
 }
+
+.clear {
+  @media (max-width: 768px) {
+    font-size: var(--heading-four-font-size);
+    width: 3em;
+    height: 2.5em;
+  }
+}
+
 .delete:hover,
 .clear:hover,
 .equal:hover,
@@ -309,6 +422,10 @@
   place-items: center;
   gap: 0.5em;
   padding: 1em;
+
+  @media (max-width: 768px) {
+    grid-template: repeat(5, 4em) / repeat(4, 4em);
+  }
 }
 
 .screen {
@@ -326,10 +443,10 @@
   font-weight: calc(var(--font-weight) * 4);
   font-size: var(--heading-one-font-size);
   overflow-wrap: anywhere;
-}
 
-@media (max-width: 768px), (max-width: 1024px) {
-  /* TO-DO FIX MOBILE MENU RESPONSIVENESS, ADD THIS UNDER THE STYLES ABOVE */
+  @media (max-width: 768px) {
+    width: 6em;
+  }
 }
 
 /* PMT CSS */
@@ -342,8 +459,17 @@
   width: 50vw;
   height: auto;
   padding: 1em;
-  margin-bottom: 2em;
   gap: 0.2em;
+
+  @media (max-width: 768px) {
+    width: 90vw;
+  }
+}
+
+@media (max-width: 1024px) {
+  .container-body {
+    width: 80vw;
+  }
 }
 
 .container-body2 h1 {
@@ -379,6 +505,16 @@
   color: #fff;
   font-size: var(--heading-six-font-size);
   text-align: center;
+
+  @media (max-width: 768px) {
+    width: 70vw;
+  }
+}
+
+@media (max-width: 1024px) {
+  .pmt-inputs input[type="number"] {
+    width: 70vw;
+  }
 }
 
 /* GET RID OF UP/DOWN BUTTONS FOR NUMBER INPUT FIELD */
@@ -401,6 +537,25 @@
   font-size: var(--heading-two-font-size);
   color: #fff;
   text-align: center;
+}
+
+.result {
+  @media (max-width: 1024px) {
+    width: 85%;
+  }
+}
+
+.bottom-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+  flex-direction: row;
+  padding: 2em;
+
+  @media (max-width: 768px), (max-width: 1024px) {
+    flex-direction: column;
+  }
 }
 
 .calculate,
