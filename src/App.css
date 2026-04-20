@@ -13,8 +13,16 @@
   transform: scale(1.2);
 }
 
+.sun:hover {
+  color: var(--secondary-color);
+}
+
 .moon {
   color: #fff;
+}
+
+.moon:hover {
+  color: var(--teritary-color);
 }
 
 .btn {
@@ -74,13 +82,11 @@
   justify-content: center;
   align-items: center;
   gap: 10vw;
+  padding: 20px;
 }
 
-.navbar-left {
-  color: var(--text-color);
-}
-
-.navbar-left h1 {
+.navbar-left .logo {
+  text-decoration: none;
   font-size: var(--heading-two-font-size);
   font-weight: calc(var(--font-weight) * 4);
   background: linear-gradient(
@@ -320,35 +326,7 @@
 }
 
 @media (max-width: 768px), (max-width: 1024px) {
-  .container-body1 {
-    width: 80vw;
-    height: auto;
-    padding: 1em;
-    gap: 0.5em;
-  }
-
-  .screen {
-    width: 4em;
-  }
-
-  .calculator {
-    grid-template: repeat(5, 3em) / repeat(4, 5em);
-    gap: 0;
-    padding: 0;
-  }
-
-  .number,
-  .operand,
-  .delete,
-  .clear,
-  .equal,
-  .dot {
-    width: 4em;
-    height: 2em;
-    font-size: var(--heading-six-font-size);
-  }
-
-  /* TO-DO FIX MOBILE MENU RESPONSIVENESS */
+  /* TO-DO FIX MOBILE MENU RESPONSIVENESS, ADD THIS UNDER THE STYLES ABOVE */
 }
 
 /* PMT CSS */

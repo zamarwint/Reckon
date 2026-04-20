@@ -1,22 +1,58 @@
-import Header from "./../components/Header.tsx";
+import Header from "./../components/Header";
 import { useState } from "react";
+import {
+  useGlobalModalContext,
+  MODAL_TYPES,
+} from "./../components/GlobalModalContext";
 
 export default function BasicMath() {
+  const { showModal } = useGlobalModalContext();
+
+  // MODALS SUCCESS AND ERROR
+  const successModal = (title: string, content: string) => {
+    showModal(MODAL_TYPES.SUCCESS_MODAL, {
+      title: title || "Success",
+      content:
+        content || "Your math expression has been processed successfully!",
+    });
+  };
+
+  const errorModal = (title: string, content: string) => {
+    showModal(MODAL_TYPES.ERROR_MODAL, {
+      title: title || "Invalid Input",
+      content:
+        content ||
+        "The expression you entered is mathematically invalid. Please check your syntax.",
+    });
+  };
+
+  // STATE
   const [input, setInput] = useState("");
 
   // Input numbers to screen
-  const handleNumbers = (value: any) => {
+  const handleNumbers = (value: string) => {
     setInput((prev) => prev + value);
   };
 
   // Input operators to screen
-  const handleOperators = (value: any) => {
+  const handleOperators = (value: string) => {
     setInput((prev) => {
       const operators = ["+", "-", "*", "/", "%", "**"];
-      const lastChar = prev.slice(-1);
-      if (operators.includes(lastChar)) {
-        return (prev.slice(0, -1) + value).toString();
+
+      // Find if current input ends with any operator (longest first to catch '**')
+      const sortedOperators = [...operators].sort(
+        (a, b) => b.length - a.length,
+      );
+      for (const op of sortedOperators) {
+        if (prev.endsWith(op)) {
+          errorModal(
+            "Invalid Input",
+            "You can only use one operator at a time.",
+          );
+          return (prev.slice(0, -op.length) + value).toString();
+        }
       }
+
       return (prev + value).toString();
     });
   };
@@ -33,16 +69,22 @@ export default function BasicMath() {
 
   // Calculates the answer
   const handleCalculate = () => {
+    if (!input) return;
     try {
-      setInput(eval(input).toString());
+      // eslint-disable-next-line no-eval
+      const result = eval(input);
+      setInput(result !== undefined ? result.toString() : "0");
     } catch (err) {
-      setInput("An error occured.");
+      setInput("0");
+      errorModal("Invalid Input", "Please check your syntax.");
     }
   };
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(input);
-    alert("Copied to clipboard!");
+    if (input) {
+      navigator.clipboard.writeText(input);
+      successModal("Success", "Copied to clipboard!");
+    } else errorModal("An error occured", "Nothing to copy!");
   };
 
   // JSX OUTPUT

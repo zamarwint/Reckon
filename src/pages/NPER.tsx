@@ -1,29 +1,63 @@
-import Header from "./../components/Header.tsx";
+import Header from "./../components/Header";
 import { nper } from "financial";
 import { useState } from "react";
+import {
+  useGlobalModalContext,
+  MODAL_TYPES,
+} from "./../components/GlobalModalContext";
 
 export default function NPER() {
+  const { showModal } = useGlobalModalContext();
+
+  // MODALS SUCCESS AND ERROR
+  const successModal = (title: string, content: string) => {
+    showModal(MODAL_TYPES.SUCCESS_MODAL, {
+      title: title || "Success",
+      content:
+        content || "Your math expression has been processed successfully!",
+    });
+  };
+
+  const errorModal = (title: string, content: string) => {
+    showModal(MODAL_TYPES.ERROR_MODAL, {
+      title: title || "Invalid Input",
+      content:
+        content ||
+        "The expression you entered is mathematically invalid. Please check your syntax.",
+    });
+  };
+
+  // STATE
   const [rate, setRate] = useState("");
   const [pmt, setPmt] = useState("");
   const [pv, setPv] = useState("");
   const [fv, setFv] = useState("");
   const [input, setInput] = useState("");
 
-  const handleCalculatePMT = () => {
-    let result = Math.round(
-      nper(
-        parseFloat(rate) / 12,
-        parseFloat(pmt),
-        parseFloat(pv),
-        parseFloat(fv),
-      ),
-    );
-    setInput(result.toString());
+  const handleCalculateNPER = () => {
+    try {
+      if (!rate || !nper || !pv || !fv)
+        errorModal("An error occured", "Please input all values.");
+      let result = Math.round(
+        nper(
+          parseFloat(rate) / 12,
+          parseFloat(pmt),
+          parseFloat(pv),
+          parseFloat(fv),
+        ),
+      );
+      setInput(result.toString());
+    } catch (err) {
+      setInput("0");
+      errorModal("Invalid Input", "Please check your syntax.");
+    }
   };
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(input);
-    alert("Copied to clipboard!");
+    if (input) {
+      navigator.clipboard.writeText(input);
+      successModal("Success", "Copied to clipboard!");
+    } else errorModal("An error occured", "Nothing to copy!");
   };
 
   return (
@@ -78,7 +112,7 @@ export default function NPER() {
         <div className="bottom-buttons">
           <button
             className="btn calculate"
-            onClick={() => handleCalculatePMT()}
+            onClick={() => handleCalculateNPER()}
           >
             Calculate
           </button>

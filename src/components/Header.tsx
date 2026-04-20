@@ -30,7 +30,9 @@ const Header = () => {
     <>
       <nav className="navigation">
         <div className="navbar-left">
-          <h1>Reckon</h1>
+          <Link to="/" className="logo">
+            Reckon
+          </Link>
         </div>
         <div className="navbar-center">
           <Link
