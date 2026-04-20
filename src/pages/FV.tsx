@@ -38,11 +38,13 @@ export default function FV() {
     try {
       if (!rate || !nper || !pv || !fv)
         errorModal("An error occured", "Please input all values.");
-      let result = fv(
-        parseFloat(rate) / 12,
-        parseFloat(nper) * 12,
-        parseFloat(pmt),
-        parseFloat(pv),
+      let result = Math.round(
+        fv(
+          parseFloat(rate) / 12,
+          parseFloat(nper) * 12,
+          -parseFloat(pmt),
+          -parseFloat(pv),
+        ),
       );
       setInput(result.toString());
     } catch (err) {
@@ -70,6 +72,20 @@ export default function FV() {
         <p>
           The FV function calculates the future value of an investment based on
           a constant interest rate.
+        </p>
+        <strong>
+          <p>
+            <i>Example use case</i>
+          </p>
+        </strong>
+        <p>
+          What is the future value after 10 years <i>(NPER)</i> of saving $100{" "}
+          <i>(PV)</i> now, with an additional monthly savings of $100
+          (payment...PMT). Assume the interest rate <i>(RATE)</i> is 5%
+          (annually) compounded monthly? <br /> <br /> <strong>Answer:</strong>{" "}
+          By convention, the negative sign represents cash flow out (i.e. money
+          not available today). Thus, saving $100 a month at 5% annual interest
+          leads to $15,692.93 available to spend in 10 years.
         </p>
         <div className="pmt-inputs">
           <input
@@ -105,7 +121,7 @@ export default function FV() {
             placeholder="ENTER PV"
           />
         </div>
-        <h3>RESULT</h3>
+        <h3>RESULT (FUTURE WORTH)</h3>
         <div className="screen result">{input || "0"}</div>
         <div className="bottom-buttons">
           <button className="btn calculate" onClick={() => handleCalculateFV()}>

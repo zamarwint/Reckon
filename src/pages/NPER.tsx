@@ -31,20 +31,14 @@ export default function NPER() {
   const [rate, setRate] = useState("");
   const [pmt, setPmt] = useState("");
   const [pv, setPv] = useState("");
-  const [fv, setFv] = useState("");
   const [input, setInput] = useState("");
 
   const handleCalculateNPER = () => {
     try {
-      if (!rate || !nper || !pv || !fv)
+      if (!rate || !nper || !pv)
         errorModal("An error occured", "Please input all values.");
       let result = Math.round(
-        nper(
-          parseFloat(rate) / 12,
-          parseFloat(pmt),
-          parseFloat(pv),
-          parseFloat(fv),
-        ),
+        nper(parseFloat(rate) / 12, -parseFloat(pmt), parseFloat(pv)),
       );
       setInput(result.toString());
     } catch (err) {
@@ -73,6 +67,17 @@ export default function NPER() {
           The NPER function returns the number of periods for an investment
           based on periodic, constant payments and a constant interest rate.
         </p>
+        <strong>
+          <p>
+            <i>Example use case</i>
+          </p>
+        </strong>
+        <p>
+          If you only had $150/month <i>(PMT)</i> to pay towards a loan, how
+          long would it take to pay-off a loan of $8,000 <i>(PV)</i> at 7%{" "}
+          <i>(RATE)</i> annual interest? <br /> <br /> <strong>Answer:</strong>{" "}
+          Over 64 months would be required to pay off the loan.
+        </p>
         <div className="pmt-inputs">
           <input
             type="number"
@@ -98,16 +103,8 @@ export default function NPER() {
             onChange={(e) => setPv(e.target.value)}
             placeholder="ENTER PV"
           />
-          <input
-            type="number"
-            name=""
-            id=""
-            value={fv}
-            onChange={(e) => setFv(e.target.value)}
-            placeholder="ENTER FV"
-          />
         </div>
-        <h3>RESULT</h3>
+        <h3>RESULT (MONTHS REQUIRED TO PAY OFF)</h3>
         <div className="screen result">{input || "0"}</div>
         <div className="bottom-buttons">
           <button

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { FaSun } from "react-icons/fa6";
 import { FaMoon } from "react-icons/fa";
+import { useLocation } from "react-router-dom";
 
 const Header = () => {
   // DARK / LIGHT THEME IMPLEMENTATION
@@ -25,6 +26,9 @@ const Header = () => {
     setTheme((prev) => (prev === "dark" ? "light" : "dark"));
   };
 
+  // CHECK TO SEE WHICH PAGE USER IS ON SO THAT IT CAN SET THE ACTIVE LINK IN NAVBAR
+  const location = useLocation();
+
   // RENDERED JSX
   return (
     <>
@@ -36,7 +40,7 @@ const Header = () => {
         </div>
         <div className="navbar-center">
           <Link
-            className="link"
+            className={location.pathname === "/" ? "link active" : "link"}
             to="/"
             data-aos="fade-down"
             data-aos-duration="500"
@@ -44,7 +48,9 @@ const Header = () => {
             Home
           </Link>
           <Link
-            className="link"
+            className={
+              location.pathname === "/basic-math" ? "link active" : "link"
+            }
             to="/basic-math"
             data-aos="fade-down"
             data-aos-duration="1000"
@@ -52,7 +58,7 @@ const Header = () => {
             Basic Math
           </Link>
           <Link
-            className="link"
+            className={location.pathname === "/pmt" ? "link active" : "link"}
             to="/pmt"
             data-aos="fade-down"
             data-aos-duration="1500"
@@ -60,7 +66,7 @@ const Header = () => {
             PMT
           </Link>
           <Link
-            className="link"
+            className={location.pathname === "/fv" ? "link active" : "link"}
             to="/fv"
             data-aos="fade-down"
             data-aos-duration="2000"
@@ -68,7 +74,7 @@ const Header = () => {
             FV
           </Link>
           <Link
-            className="link"
+            className={location.pathname === "/pv" ? "link active" : "link"}
             to="/pv"
             data-aos="fade-down"
             data-aos-duration="2500"
@@ -76,7 +82,7 @@ const Header = () => {
             PV
           </Link>
           <Link
-            className="link"
+            className={location.pathname === "/nper" ? "link active" : "link"}
             to="/nper"
             data-aos="fade-down"
             data-aos-duration="3000"

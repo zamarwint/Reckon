@@ -31,18 +31,14 @@ export default function PMT() {
   const [rate, setRate] = useState("");
   const [nper, setNper] = useState("");
   const [pv, setPv] = useState("");
-  const [fv, setFv] = useState("");
   const [input, setInput] = useState("");
 
   const handleCalculatePMT = () => {
     try {
-      if (!rate || !nper || !pv || !fv)
+      if (!rate || !nper || !pv)
         errorModal("An error occured", "Please input all values.");
-      let result = pmt(
-        parseFloat(rate) / 12,
-        parseFloat(nper) * 12,
-        parseFloat(pv),
-        parseFloat(fv),
+      let result = Math.round(
+        pmt(parseFloat(rate) / 12, parseFloat(nper) * 12, -parseFloat(pv)),
       );
       setInput(result.toString());
     } catch (err) {
@@ -71,6 +67,21 @@ export default function PMT() {
           The PMT function calculates the payment for a loan based on constant
           payments and a constant interest rate.
         </p>
+        <strong>
+          <p>
+            <i>Example use case</i>
+          </p>
+        </strong>
+        <p>
+          What is the monthly payment needed to pay off a $200,000 loan{" "}
+          <i>(PV)</i> in 15 years <i>(NPER)</i> at an annual interest rate of
+          7.5%
+          <i>(RATE)</i> ? <br /> <br />
+          <strong>Answer:</strong> In order to pay-off (i.e., have a
+          future-value of 0) the $200,000 obtained today, a monthly payment of
+          $1,854.02 would be required. Note that this example illustrates usage
+          of fv having a default value of 0.
+        </p>
         <div className="pmt-inputs">
           <input
             type="number"
@@ -96,16 +107,8 @@ export default function PMT() {
             onChange={(e) => setPv(e.target.value)}
             placeholder="ENTER PV"
           />
-          <input
-            type="number"
-            name=""
-            id=""
-            value={fv}
-            onChange={(e) => setFv(e.target.value)}
-            placeholder="ENTER FV"
-          />
         </div>
-        <h3>RESULT</h3>
+        <h3>RESULT (AMOUNT PER MONTH)</h3>
         <div className="screen result">{input || "0"}</div>
         <div className="bottom-buttons">
           <button

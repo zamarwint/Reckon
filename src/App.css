@@ -115,7 +115,9 @@
   transition: color 500ms ease;
 }
 
-.navbar-center .link:hover {
+/* HIGHLIGHTS THE NAVBAR FOR THE PAGE THE USER IS ON. */
+.navbar-center .link:hover,
+.navbar-center .link.active {
   background-color: var(--rgba-header-color);
   color: var(--quaternary-color);
   border-radius: 50px;
@@ -247,6 +249,7 @@
 
 .container-body1 {
   width: 35vw;
+  user-select: none;
 }
 
 .number {
@@ -347,12 +350,14 @@
   font-size: var(--heading-two-font-size);
   color: #fff;
   text-align: center;
+  user-select: text;
 }
 
 .container-body2 p {
   font-size: var(--heading-five-font-size);
   color: #fff;
   text-align: center;
+  user-select: text;
 }
 
 .pmt-inputs {
@@ -418,71 +423,3 @@
 /* PV CSS */
 
 /* NPER CSS */
-
-/* DIALOG STYLING */
-[data-success],
-[data-error] {
-  background-color: var(--teritary-color);
-  padding: 3em;
-  border: 2px solid var(--secondary-color);
-  border-radius: 10px;
-  box-shadow: 0 12px 50px rgba(0, 0, 0, 1);
-  text-align: center;
-
-  /* Closed state: scaled down and transparent */
-  opacity: 0;
-  transform: scale(0.8);
-
-  /* Transition setup including allow-discrete for display */
-  transition:
-    opacity 0.3s ease-out,
-    transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
-    overlay 0.3s allow-discrete,
-    display 0.3s allow-discrete;
-}
-
-[data-success]:open,
-[data-error]:open {
-  /* Open state: fully visible and normal size */
-  opacity: 1;
-  transform: scale(1);
-
-  /* Define the starting point for the entry animation */
-  @starting-style {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-}
-
-[data-success]::backdrop,
-[data-error]::backdrop {
-  background-color: rgba(0, 0, 0, 0.7);
-  opacity: 0;
-  transition: opacity 0.3s ease-out;
-}
-
-[data-success]:open::backdrop,
-[data-error]:open::backdrop {
-  opacity: 1;
-}
-
-[data-success] .dialog-content,
-[data-error] .dialog-content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 2em;
-}
-
-[data-success] .dialog-content h3,
-[data-error] .dialog-content h3 {
-  color: var(--text-color);
-  font-size: var(--heading-four-font-size);
-  height: 0;
-  margin-top: -5px;
-}
-
-.close-success-modal,
-.close-error-modal {
-  cursor: pointer;
-}

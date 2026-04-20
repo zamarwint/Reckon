@@ -38,6 +38,11 @@
   --rgba-header-color: rgba(255, 255, 255, 0.9);
 }
 
+::selection {
+  background-color: #fff;
+  color: var(--primary-color);
+}
+
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
