@@ -12,7 +12,7 @@ It's simple.
 
 ## Try it Yourself!
 
-Visit [the website.](#)
+Visit [the website.](https://reckon-p.netlify.app/)
 
 **OR**
 
