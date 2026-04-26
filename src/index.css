@@ -23,6 +23,7 @@
   --rgba-quaternary-color: rgba(255, 255, 255, 0.5);
   --rgba-quaternary-color-flip: rgba(0, 0, 0, 0.5);
   --rgba-header-color: rgba(0, 0, 0, 0.9);
+  --modal-bg-color: #ebebeb;
 
   --font-family: "Stack Sans Text", sans-serif;
   --font-weight: 200;
@@ -42,6 +43,7 @@
   --rgba-quaternary-color: rgba(0, 0, 0, 0.5);
   --rgba-quaternary-color-flip: rgba(255, 255, 255, 0.5);
   --rgba-header-color: rgba(255, 255, 255, 0.9);
+  --modal-bg-color: #202020;
 }
 
 ::selection {
@@ -69,7 +71,7 @@ body {
   background: linear-gradient(
     0deg,
     var(--primary-color),
-    var(--quaternary-color) 80%
+    var(--quaternary-color)
   );
   background-repeat: no-repeat;
   background-size: cover;

@@ -28,6 +28,7 @@ function scrollToAnchor() {
 
 const Home = () => {
   scrollToAnchor();
+
   return (
     <div className="main-content">
       <Header />

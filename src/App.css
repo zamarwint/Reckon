@@ -49,7 +49,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 4em;
+  gap: 4vh;
 }
 
 .container-body {
@@ -326,10 +326,6 @@
 
 /* BASIC MATH CSS */
 
-.main1 {
-  gap: 1.5em;
-}
-
 .container-body1 {
   user-select: none;
 
@@ -450,10 +446,6 @@
 }
 
 /* PMT CSS */
-
-.main2 {
-  gap: 2em;
-}
 
 .container-body2 {
   width: 50vw;

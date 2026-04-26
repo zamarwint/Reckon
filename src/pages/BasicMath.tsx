@@ -1,29 +1,24 @@
 import Header from "./../components/Header";
-import { useState } from "react";
-import {
-  useGlobalModalContext,
-  MODAL_TYPES,
-} from "./../components/GlobalModalContext";
+import { useState, useRef } from "react";
+import { ErrorModal, SuccessModal } from "../components/Dialogs";
 
 export default function BasicMath() {
-  const { showModal } = useGlobalModalContext();
+  // DIALOGS
+  const errorDialogRef = useRef<HTMLDialogElement>(null);
+  const successDialogRef = useRef<HTMLDialogElement>(null);
 
-  // MODALS SUCCESS AND ERROR
-  const successModal = (title: string, content: string) => {
-    showModal(MODAL_TYPES.SUCCESS_MODAL, {
-      title: title || "Success",
-      content:
-        content || "Your math expression has been processed successfully!",
-    });
+  const toggleError = () => {
+    if (!errorDialogRef.current) return;
+    errorDialogRef.current.open
+      ? errorDialogRef.current.close()
+      : errorDialogRef.current.showModal();
   };
 
-  const errorModal = (title: string, content: string) => {
-    showModal(MODAL_TYPES.ERROR_MODAL, {
-      title: title || "Invalid Input",
-      content:
-        content ||
-        "The expression you entered is mathematically invalid. Please check your syntax.",
-    });
+  const toggleSuccess = () => {
+    if (!successDialogRef.current) return;
+    successDialogRef.current.open
+      ? successDialogRef.current.close()
+      : successDialogRef.current.showModal();
   };
 
   // STATE
@@ -43,12 +38,10 @@ export default function BasicMath() {
       const sortedOperators = [...operators].sort(
         (a, b) => b.length - a.length,
       );
+
       for (const op of sortedOperators) {
         if (prev.endsWith(op)) {
-          errorModal(
-            "Invalid Input",
-            "You can only use one operator at a time.",
-          );
+          toggleError();
           return (prev.slice(0, -op.length) + value).toString();
         }
       }
@@ -76,15 +69,17 @@ export default function BasicMath() {
       setInput(result !== undefined ? result.toString() : "0");
     } catch (err) {
       setInput("0");
-      errorModal("Invalid Input", "Please check your syntax.");
+      toggleError();
     }
   };
 
   const handleCopy = () => {
     if (input) {
       navigator.clipboard.writeText(input);
-      successModal("Success", "Copied to clipboard!");
-    } else errorModal("An error occured", "Nothing to copy!");
+      toggleSuccess();
+    } else {
+      toggleError();
+    }
   };
 
   // JSX OUTPUT
@@ -215,10 +210,17 @@ export default function BasicMath() {
             =
           </button>
         </div>
-        <button className="btn copy1 copy-button" onClick={handleCopy}>
+        <button
+          className="btn copy1 copy-button"
+          onClick={() => {
+            handleCopy();
+          }}
+        >
           Copy
         </button>
       </div>
+      <ErrorModal ref={errorDialogRef} toggleDialog={toggleError} />
+      <SuccessModal ref={successDialogRef} toggleDialog={toggleSuccess} />
     </div>
   );
 }

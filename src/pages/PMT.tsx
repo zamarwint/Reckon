@@ -1,30 +1,25 @@
 import Header from "./../components/Header";
 import { pmt } from "financial";
-import { useState } from "react";
-import {
-  useGlobalModalContext,
-  MODAL_TYPES,
-} from "./../components/GlobalModalContext";
+import { useState, useRef } from "react";
+import { ErrorModal, SuccessModal } from "../components/Dialogs";
 
 export default function PMT() {
-  const { showModal } = useGlobalModalContext();
+  // DIALOGS
+  const errorDialogRef = useRef<HTMLDialogElement>(null);
+  const successDialogRef = useRef<HTMLDialogElement>(null);
 
-  // MODALS SUCCESS AND ERROR
-  const successModal = (title: string, content: string) => {
-    showModal(MODAL_TYPES.SUCCESS_MODAL, {
-      title: title || "Success",
-      content:
-        content || "Your math expression has been processed successfully!",
-    });
+  const toggleError = () => {
+    if (!errorDialogRef.current) return;
+    errorDialogRef.current.open
+      ? errorDialogRef.current.close()
+      : errorDialogRef.current.showModal();
   };
 
-  const errorModal = (title: string, content: string) => {
-    showModal(MODAL_TYPES.ERROR_MODAL, {
-      title: title || "Invalid Input",
-      content:
-        content ||
-        "The expression you entered is mathematically invalid. Please check your syntax.",
-    });
+  const toggleSuccess = () => {
+    if (!successDialogRef.current) return;
+    successDialogRef.current.open
+      ? successDialogRef.current.close()
+      : successDialogRef.current.showModal();
   };
 
   // STATE
@@ -35,23 +30,24 @@ export default function PMT() {
 
   const handleCalculatePMT = () => {
     try {
-      if (!rate || !nper || !pv)
-        errorModal("An error occured", "Please input all values.");
+      if (!rate || !nper || !pv) toggleError();
       let result = Math.round(
         pmt(parseFloat(rate) / 12, parseFloat(nper) * 12, -parseFloat(pv)),
       );
       setInput(result.toString());
     } catch (err) {
       setInput("0");
-      errorModal("Invalid Input", "Please check your syntax.");
+      toggleError();
     }
   };
 
   const handleCopy = () => {
     if (input) {
       navigator.clipboard.writeText(input);
-      successModal("Success", "Copied to clipboard!");
-    } else errorModal("An error occured", "Nothing to copy!");
+      toggleSuccess();
+    } else {
+      toggleError();
+    }
   };
 
   return (
@@ -125,6 +121,8 @@ export default function PMT() {
           </button>
         </div>
       </div>
+      <ErrorModal ref={errorDialogRef} toggleDialog={toggleError} />
+      <SuccessModal ref={successDialogRef} toggleDialog={toggleSuccess} />
     </div>
   );
 }
